@@ -13,6 +13,7 @@
             {{.UserData.name}}:<br/>
             <textarea></textarea>
             <input type="submit" value="送信" />
+            または <a href="/logout">サインアウト</a>
         </form>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
         </script>
@@ -39,9 +40,13 @@
                         alert("接続が終了しました。");
                     }
                     socket.onmessage = function(e) {
-                        var msg = eval("("+e.data+")")
+                        var msg = JSON.parse(e.data)
                         messages.append(
                             $("<li>").append(
+                                $("<img>").css({
+                                    width:50,
+                                    vertivalAlign:"middle"
+                                }).attr("src", msg.AvatarURL),
                                 $("<strong>").text(msg.Name + ": "),
                                 $("<span>").text(msg.Message)
                             )
