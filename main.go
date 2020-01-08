@@ -47,7 +47,7 @@ func main() {
 		google.New("124417116052-palpakd5oh7tk6nq9l0gnuofdf1rhlbp.apps.googleusercontent.com", "lFGtC2LLVL0maRUtH7-p20AV", "http://localhost:8080/auth/callback/google"),
 	)
 
-	r := newRoom()
+	r := newRoom(UseAuthAvatar)
 	http.Handle("/", MustAuth(&templateHandler{filename: "chat.html"}))
 	http.Handle("/login", &templateHandler{filename: "login.html"})
 	http.HandleFunc("/auth/", loginHandler)
